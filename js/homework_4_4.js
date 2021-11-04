@@ -13,7 +13,12 @@ function start_game_city_chain ( start_city = 'Киев') {
 	alert (`Игра началась. Первый город ${start_city}`)
 
 	let score = 0;
-	let previos_cities = [start_city];
+	let previos_cities = [];
+	add_to_previos_cities (start_city);
+	
+	function add_to_previos_cities (city) {
+		previos_cities.push(city.toLowerCase());
+	}
 
 	while (true) {
 		let new_city = prompt('Введите город');
@@ -28,22 +33,20 @@ function start_game_city_chain ( start_city = 'Киев') {
 		let last_char = prev_city[prev_city.length - 1];
 		let first_char = new_city[0];
 
-		last_char = last_char.toLowerCase();
-		first_char = first_char.toLowerCase();
-
 		if (last_char === 'ь' || last_char === 'ы' ) {
 			let last_char = prev_city[prev_city.length - 2];
-			last_char = last_char.toLowerCase();
 		}
 
+		first_char = first_char.toLowerCase();
+
 		if (last_char === first_char) {
-			score+=1;
+			score++;
 		} else {
 			alert (`Игра окончена. Ваши очки: ${score}`);
 			return score;
 		}
 
-		previos_cities.push(new_city);
+		add_to_previos_cities (newCity);
 	
 	}
 	return score;
