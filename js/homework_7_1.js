@@ -81,10 +81,12 @@ function Сalculator (calculator_name) {
   }
   
   this.clear_history = function(massege) {
+    this.massege = massege;
     if (massege === 'Да') {
     console.clear();
     }
   }
+
 }
 
 let calculator = new Сalculator ('Мой калькулятор');
@@ -92,3 +94,4 @@ calculator.addition([1,1,4,1,2]);
 calculator.subtraction(21,3);
 calculator.multiplication([1,3,4,1,5]);
 calculator.division(24,6);
+calculator.clear_history('Нет');
