@@ -21,80 +21,75 @@
 */
 
 function Сalculator (calculator_name) {
-	
-	this.calculator_name = calculator_name;
-	
-	this.action = function() {
-	this.act = prompt('Выберите действие. + - * /');
-	
-	if (this.act === '+') {
-		this.act = 'сумма';
-		this.a = prompt('Введите слагаемые через пробел');
-		let arr = this.a.split(' ');
 
+	this.calculator_name = calculator_name;
+
+	this.addition = function(arrg) {
+
+		this.act = 'сумма';
+		this.arrg = arrg;
 		this.result = 0;
 
-		for (let i = 0; i < arr.length; i++) {
-			this.result = this.result+(+arr[i]);
+		for (let i = 0; i < arrg.length; i++) {
+			this.result = this.result+(+arrg[i]);
 		}
-		alert(`Сумма = ${this.result}`);
+		calculator.add_history();
+		return this.result;
 	}
 
-	if (this.act === '-') {
+	this.subtraction = function(arrg) {
+
 		this.act = 'разность';
-	  	this.a = +prompt('Вычитаемое?', 0);
-	    this.b = +prompt('Вычитатель?', 0);
-	    this.result = this.a - this.b;
-	    alert(`Разность = ${this.result}`);
+		this.arrg = arrg;
+		this.result = arrg[0] - arrg[1];
+
+		calculator.add_history();
+		return this.result;
 	}
 
-	if (this.act === '*') {
+	this.multiplication = function(arrg) {
+
 		this.act = 'произведение';
-		this.a = prompt('Введите множители через пробел');
-		let arr = this.a.split(' ');
+		this.arrg = arrg;
 
 		this.result = 1;
 
-		for (let i = 0; i < arr.length; i++) {
-			this.result = this.result*(+arr[i]);
+		for (let i = 0; i < arrg.length; i++) {
+			this.result = this.result*(+arrg[i]);
 		}
-		alert(`Произведение = ${this.result}`);
-  	};
-
-	if (this.act === '/') {
-		this.act = 'деление';
-	  	this.a = +prompt('Делимое?', 0);
-	    this.b = +prompt('Делитель?', 0);
-	    this.result = this.a / this.b;
-	    alert(`Результат деления = ${this.result}`);
-	    
-		};
-		
-		calculator.history();
-
+		calculator.add_history();
 		return this.result;
-	};
+	}
 
-	this.history = function() {
+	this.division = function(arrg) {
+
+		this.act = 'деление';
+		this.arrg = arrg;
+		this.result = arrg[0] / arrg[1];
+
+		calculator.add_history();
+		return this.result;
+	}
+
+	this.add_history = function() {
 		let d = new Date();
 		this.date = `${d.getDate()}.${d.getMonth()}.${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}` ;
-		this.string = `${this.calculator_name}  (${this.date}): ${this.act} = ${this.result}, (${this.a}, ${this.b})`;
-		
+		this.string = `${this.calculator_name}  (${this.date}): ${this.act} = ${this.result}, (${this.arrg})`;
+
 		console.log(`${this.string}`);
-		
-		let massege = prompt('Очистить историю калькулятора? (да/нет)');
-		if (massege === 'да') {
-			console.clear();
-			calculator.action();
-		} else {
-			calculator.action();
-		}
-
 		return this.string;
-
+	}
+	
+	this.clear_history = function(massege) {
+		if (massege === 'Да') {
+		console.clear();
+		}
 	}
 }
 
 let calculator = new Сalculator ('Мой калькулятор');
-
-calculator.action();
+calculator.addition([1,1,4,1,2]);
+calculator.subtraction([7,3]);
+calculator.multiplication([1,3,4,1,5]);
+calculator.division([24,6]);
+calculator.clear_history('Нет');
