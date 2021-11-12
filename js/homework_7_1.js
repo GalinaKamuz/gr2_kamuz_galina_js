@@ -23,8 +23,9 @@
 function Сalculator (calculator_name) {
 
   this.calculator_name = calculator_name;
+  this.history = [];
 
-  this.addition = function(arrg) {
+  this.addition = function(...arrg) {
 
     this.act = 'сумма';
     this.arrg = arrg;
@@ -47,7 +48,7 @@ function Сalculator (calculator_name) {
     return this.result;
   }
 
-  this.multiplication = function(arrg) {
+  this.multiplication = function(...arrg) {
 
     this.act = 'произведение';
     this.arrg = arrg;
@@ -76,22 +77,32 @@ function Сalculator (calculator_name) {
     this.date = `${d.getDate()}.${d.getMonth()}.${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}` ;
     this.string = `${this.calculator_name}  (${this.date}): ${this.act} = ${this.result}, (${this.arrg})`;
 
-    console.log(`${this.string}`);
+    this.history.push(this.string);
+
     return this.string;
   }
   
-  this.clear_history = function(massege) {
-    this.massege = massege;
-    if (massege === 'Да') {
-    console.clear();
+  this.output_history = function() {
+
+      for (let i = 0; i < this.history.length; i++) {
+      console.log(`${this.history[i]}`);
     }
   }
 
+  this.clear_history = function(massege) {
+    this.massege = massege;
+    if (massege === 'Да') {
+      this.history = [];
+      console.log(`${this.history}`);
+      console.clear();
+    }
+  }
 }
 
 let calculator = new Сalculator ('Мой калькулятор');
-calculator.addition([1,1,4,1,2]);
+calculator.addition(1,1,4,1,2);
 calculator.subtraction(21,3);
-calculator.multiplication([1,3,4,1,5]);
+calculator.multiplication(1,3,4,1,5);
 calculator.division(24,6);
+calculator.output_history();
 calculator.clear_history('Нет');
