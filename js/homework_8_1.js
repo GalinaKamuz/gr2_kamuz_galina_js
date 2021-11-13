@@ -20,7 +20,7 @@ create_shapes = function() {
     square.style.background = "blue";
     square.style.height = '50px';
     square.style.width = '50px';
-    document.body.prepend(square);
+    document.body.append(square);
   }
 }
 
