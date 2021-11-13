@@ -23,7 +23,6 @@ create_shapes = function() {
     square.style.height = '70px';
     square.style.width = '70px';
     square.style.margin = '5px';
-    square.style.float = 'right';
     
     document.body.append(square);
     console.log(square);
