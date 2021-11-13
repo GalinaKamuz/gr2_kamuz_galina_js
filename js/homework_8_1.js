@@ -53,8 +53,7 @@ delete_square = function() {
     square[i].remove()
   }
 
-  let body = document.querySelector('body');
-  body.style.background = "black";
+  document.body.style.background = "black";
 }
 
 setTimeout(() => create_shapes(), 3000);
