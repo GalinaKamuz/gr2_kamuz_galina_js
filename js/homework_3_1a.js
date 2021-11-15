@@ -11,7 +11,7 @@ second_number = Number(second_number);
 let incorrect_data = isNaN(first_number) || isNaN(second_number);
 
 if (incorrect_data) {
-	alert('Были введены некорректные данные');
+	console.log('Были введены некорректные данные');
 } else {
 
 	let segment_start;
