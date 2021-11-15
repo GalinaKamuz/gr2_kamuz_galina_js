@@ -12,8 +12,8 @@ for(let i = 0; i < 2; i++) {
     $('body').append('<div></div>');
   }
 
-  $('div:first').attr('id', 'зелёный');
-  $('div:last').attr('id', 'красный');
+  $('div:first').attr('rus_color', 'зелёный');
+  $('div:last').attr('rus_color', 'красный');
 
   $('div:first').css({
     background: 'green',
@@ -28,11 +28,10 @@ for(let i = 0; i < 2; i++) {
   });
   
 $('div').on('click', function (event) {
-    alert(`${$(this).attr('id')}`);
+    alert(`${$(this).attr('rus_color')}`);
 });
 
 $('div').on('mouseover', function (event) {
     console.log($(this).css('height'), $(this).css('width'));
 });
-
 });
