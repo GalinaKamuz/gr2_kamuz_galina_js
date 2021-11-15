@@ -1,15 +1,14 @@
-let first_name = 'Галина';
-let last_name = 'Камуз';
 const BIRTH_YEAR = 1991;
 const BIRTH_TOWN = 'Торецк';
 const EYE_COLOR = 'зелёный';
 const TEMPERAMENT = 'флегматик';
+let first_name = 'Галина';
+let last_name = 'Камуз';
 let my_pet = 'кот';
 let pet_age = 17;
 let working = false;
 let studying = true;
 let it_experience = false;
-
 
 alert ('Всем привет! Меня зовут ' + first_name + ' ' + last_name +'. '+
 		'Я родилась в ' + BIRTH_YEAR + ' году, в городе ' + BIRTH_TOWN +'. ' );
