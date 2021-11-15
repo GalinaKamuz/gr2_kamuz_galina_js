@@ -17,14 +17,16 @@ for(let i = 0; i < 2; i++) {
 
   $('div:first').css({
     background: 'green',
-    height: '150px',
+    height: '550px',
     width: '300px',
+    margin: '20px',
   });
   
   $('div:last').css({
     background: 'red',
     height: '250px',
     width: '500px',
+    margin: '20px',
   });
   
 $('div').on('click', function (event) {
@@ -32,6 +34,6 @@ $('div').on('click', function (event) {
 });
 
 $('div').on('mouseover', function (event) {
-    console.log($(this).css('height'), $(this).css('width'));
+    console.log($(this).css('width'), $(this).css('height'));
 });
 });
