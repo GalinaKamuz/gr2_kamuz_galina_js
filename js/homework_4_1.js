@@ -1,20 +1,21 @@
 /*Напишите функцию get_min( arr ), которая находит 
 минимальное значение в заданном массиве.*/
 
-let arr = [3,8,5,6,2,4,7,8];
+function get_min(arr) {
 
-console.log(`Заданный массив ${arr}`);
-
-function get_min() {
-
-let result_min = arr[0];
-
-for (let item of arr) {
-	if (item < result_min) {
-		result_min = item
+	if (!Array.isArray(arr)) {
+		return null;
 	}
-}
-console.log(`Минимальное значение: ${result_min}`);
+
+	let result_min = Infinity;
+
+	for (let item of arr) {
+		if (item < result_min) {
+			result_min = item
+		}
+	}
+	return result_min;
 }
 
-get_min();
+let array = [3,8,5,6,2,4,7,8];
+console.log(get_min(array));
