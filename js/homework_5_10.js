@@ -1,19 +1,21 @@
-/*Напишите функцию get_random( arr ), 
-которая вернет случайный элемент входящего массива arr.*/
+/*Напишите функцию get_min( arr ), которая находит 
+минимальное значение в заданном массиве.*/
 
-function get_random(arr) {
+function get_min(arr) {
+
 	if (!Array.isArray(arr)) {
 		return null;
 	}
 
-	let index = 0;
-	let temp = Math.random();
-	
-	index = Math.floor(arr.length * temp);
-	let result = arr[index];
+let result_min = Infinity;
 
-	return result;
+for (let item of arr) {
+	if (item < result_min) {
+		result_min = item
+	}
+}
+return result_min;
 }
 
-let array = [27,9,44,2,151,12,7,85,1,13];
-console.log(get_random(array));
+let array = [3,8,5,6,2,4,7,8];
+console.log(get_min(array));
