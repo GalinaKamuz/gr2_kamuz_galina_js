@@ -10,6 +10,11 @@
 
 const URL = 'https://jsonplaceholder.typicode.com/photos';
 
+let block;
+let title;
+let pic_url;
+let id;
+
 async function getData(url) {
     
     const response = await fetch(url);
@@ -23,16 +28,15 @@ async function getData(url) {
 
 getData(URL)
     .then(function (data) {
-
+        console.log(data);
         return data.map(function(photo) {
             
-            let block = document.createElement('div');
-            let title = document.createElement('div');
+            block = document.createElement('div');
+            title = document.createElement('div');
             title.innerHTML = `${photo.title}`;
-            let id = document.createElement('div');
+            id = document.createElement('div');
             id.innerHTML = `${photo.id}`;
-            let pic_url = `${photo.thumbnailUrl}`;
-
+            pic_url = `${photo.thumbnailUrl}`;
             outputData(block, title, id, pic_url);
         })
     })
