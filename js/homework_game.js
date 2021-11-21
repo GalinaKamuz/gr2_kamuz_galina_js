@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+
     let display = document.getElementById('canvas');
     let ctx = display.getContext('2d');
 
@@ -35,10 +35,17 @@ $(document).ready(function() {
     animation_fish();
 
 
-    Движение рыбки по движению курсора (по горизонтали)
+    //Движение рыбки по движению курсора (по горизонтали)
     document.addEventListener('mousemove', do_move);
+    document.addEventListener('touchmove', do_move_touch);
 
     function do_move() {
+        if (event.x <= display.width - 40) {
+            xPos = event.x;
+        }
+    }
+
+    function do_move_touch() {
         if (event.x <= display.width - 40) {
             xPos = event.x;
         }
@@ -52,7 +59,7 @@ $(document).ready(function() {
     }
 
     //Проверка попадания рыбки в сетку
-    function checkCollision(x, y) {
+    function check_collision(x, y) {
         if(yPos <= y + net_left.height
                 && yPos + fish.height - 10 >= y
                 && (xPos <= x + net_left.width
@@ -70,6 +77,7 @@ $(document).ready(function() {
         ctx.fillText('Счёт: ' + score, 10, display.height - 20);
     }
 
+    //Изменение сложности и вывод уровня на игровой дисплей
     function up_level(score) {
         if (score >= 3 && score <=6) {
             gap = 70;
@@ -115,7 +123,7 @@ $(document).ready(function() {
                 });
             }
 
-            if (checkCollision(net[i].x, net[i].y) === true) {
+            if (check_collision(net[i].x, net[i].y) === true) {
                 net[i].x = 0;
                 net[i].y = 0;      
             }
