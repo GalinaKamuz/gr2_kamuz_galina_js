@@ -36,13 +36,13 @@ $(document).ready(function() {
 
 
     //Движение рыбки по движению курсора (по горизонтали)
-    document.addEventListener('mousemove', do_move);
+   // document.addEventListener('mousemove', do_move);
 
-    function do_move() {
-        if (event.x <= display.width - 40) {
-            xPos = event.x;
-        }
-    }
+   // function do_move() {
+    //    if (event.x <= display.width - 40) {
+    //        xPos = event.x;
+    //    }
+   // }
 
     //Создание сеток
     let net = [];
