@@ -85,7 +85,7 @@ $(document).ready(function() {
     //Победа
     function winning() {
         if (score === winning_score) {
-            alert('Вам удалось спасти рыбку!');
+            alert('Ура! Вам удалось спасти рыбку!');
             score = 0;
             clean();
             return true;  
