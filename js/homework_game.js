@@ -14,6 +14,7 @@ $(document).ready(function() {
     net_right.src = "img/net_r.png";
 
     let score = 0;
+    let winning_score = 17;
     let level = 1;
     let gap = 80;
 
@@ -35,19 +36,22 @@ $(document).ready(function() {
     animation_fish();
 
 
-    //Движение рыбки по движению курсора (по горизонтали)
+    //Управление рыбкой по движению курсора (по горизонтали)
     document.addEventListener('mousemove', do_move);
-    document.addEventListener('touchmove', do_move_touch);
-
+    
     function do_move() {
         if (event.x <= display.width - 40) {
             xPos = event.x;
         }
     }
 
+    //Управление рыбкой по касанию экрана
+    document.addEventListener('touchmove', do_move_touch);
+
     function do_move_touch() {
-        if (event.x <= display.width - 40) {
-            xPos = event.x;
+        if (event.touches[0].clientX <= display.width - 40
+            && event.touches[0].clientX >= 0) {
+            xPos = event.touches[0].clientX - 20;
         }
     }
 
@@ -70,11 +74,22 @@ $(document).ready(function() {
                     return true;                                  
             }
     }
+
     //Вывод счёта на игровой дисплей
     function output_score() {
         ctx.fillStyle = 'black';
         ctx.font = '20px Arial';
         ctx.fillText('Счёт: ' + score, 10, display.height - 20);
+    }
+
+    //Победа
+    function winning() {
+        if (score === winning_score) {
+            alert('Вам удалось спасти рыбку!');
+            score = 0;
+            clean();
+            return true;  
+        }
     }
 
     //Изменение сложности и вывод уровня на игровой дисплей
@@ -88,13 +103,14 @@ $(document).ready(function() {
             level = 3;
         } 
         if (score >= 11 && score <=13) {
-            gap = 50;
+            gap = 55;
             level = 4;
         } 
         if (score >= 14 && score <=17) {
-            gap = 40;
+            gap = 50;
             level = 5;
-        } 
+        }
+
         ctx.fillStyle = 'black';
         ctx.font = '20px Arial';
         ctx.fillText('Уровень: ' + level, 180, display.height - 20);
@@ -127,6 +143,10 @@ $(document).ready(function() {
                 net[i].x = 0;
                 net[i].y = 0;      
             }
+
+            if (winning() === true) {
+                return;
+            }
             
             if (net[i].y == yPos + fish.height) {
                 score++;
@@ -136,6 +156,18 @@ $(document).ready(function() {
         requestAnimationFrame(draw);
     }
 
-    draw();
+    //Прорисовка объектов после победы
+    function clean() {
+        ctx.drawImage(bg, 0, 0);
+        ctx.drawImage(fish, xPos, yPos);
+        yPos--;
+        if (yPos + fish.height === 0) {
+            alert('Новая игра?');
+            location.reload();
+        }
+   
+        requestAnimationFrame(clean);
+    }
 
+    draw();
 });
