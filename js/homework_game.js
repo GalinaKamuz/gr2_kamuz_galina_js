@@ -20,7 +20,7 @@ $(document).ready(function() {
 
     // Позиция рыбки
     let xPos = 120;
-    let yPos = 410;
+    let yPos = 380;
     
     //Анимация рыбки
     function animation_fish() {
@@ -64,10 +64,10 @@ $(document).ready(function() {
 
     //Проверка попадания рыбки в сетку
     function check_collision(x, y) {
-        if(yPos <= y + net_left.height
+        if(yPos <= y + net_left.height - 3
                 && yPos + fish.height - 10 >= y
-                && (xPos <= x + net_left.width
-                    || xPos + fish.width >= x + net_left.width + gap)) {
+                && (xPos <= x + net_left.width - 3
+                    || xPos + fish.width >= x + net_left.width + gap + 3)) {
                     
                     alert('Рыбка попалась в сетку! Игра окончена!');
                     location.reload(); 
@@ -85,7 +85,7 @@ $(document).ready(function() {
     //Победа
     function winning() {
         if (score === winning_score) {
-            alert('Ура! Вам удалось спасти рыбку!');
+            alert('Вам удалось спасти рыбку!');
             score = 0;
             clean();
             return true;  
