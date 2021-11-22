@@ -3,8 +3,12 @@
 
 let arr = [];
 
-for (let i=500; i<=888; i+=2){
+function get_array(first_num, second_num, step) {
+	
+	for (let i = first_num; i <= second_num; i+=step){
 	arr.push(i);
 };
 
+}
+get_array(500, 888, 2);
 console.log(`Полученный массив ${arr}`);
