@@ -3,9 +3,9 @@
 
 let arr = [];
 
-function get_array(first_num, second_num, step) {
+function get_array(first_num, last_num, step) {
 	
-	for (let i = first_num; i <= second_num; i+=step){
+	for (let i = first_num; i <= last_num; i+=step){
 	arr.push(i);
 };
 
